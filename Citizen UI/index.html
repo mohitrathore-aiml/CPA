@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPA Citizen Complaint Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="gov-header">
+    <h1>CPA – Citizen Complaint Portal</h1>
+    <p>Register and track public service complaints</p>
+  </header>
+
+  <main class="container">
+
+    <section id="home-screen" class="screen active">
+      <button onclick="showScreen('register-screen')">Register Complaint</button>
+      <button class="secondary" onclick="showScreen('track-screen')">Track Complaint</button>
+    </section>
+
+    <section id="register-screen" class="screen">
+      <h2>Register Complaint</h2>
+      <form id="complaint-form">
+        <label>Complaint Description</label>
+        
+        <div class="textarea-wrapper">
+          <textarea id="complaint-textarea" required placeholder="Type or click the microphone to speak..."></textarea>
+          <button type="button" class="mic-btn" id="mic-btn" onclick="toggleSpeechRecognition()" title="Click to speak">
+            🎙️
+          </button>
+        </div>
+        <div id="speech-status" class="speech-status"></div>
+
+        <label>Department</label>
+        <select required>
+          <option value="">Select Department</option>
+          <option>Water Supply</option>
+          <option>Electricity</option>
+          <option>Roads</option>
+        </select>
+
+        <button type="button" class="location-btn" id="get-location-btn" onclick="getCurrentLocation()">
+          <span>📍</span>
+          <span>Use My Current Location</span>
+        </button>
+        
+        <div id="location-status" class="location-status" style="display: none;"></div>
+
+        <label>State</label>
+        <input type="text" id="state-field" required />
+
+        <label>District</label>
+        <input type="text" id="district-field" required />
+
+        <label>Area / Locality</label>
+        <input type="text" id="area-field" required />
+
+        <button type="submit">Submit Complaint</button>
+      </form>
+    </section>
+
+    <section id="ack-screen" class="screen">
+      <h2>Complaint Registered</h2>
+      <p>Your Complaint ID:</p>
+      <strong id="complaint-id"></strong>
+      <button onclick="copyToClipboard(document.getElementById('complaint-id').innerText)">Copy ID</button>
+      <p>Status: Submitted</p>
+      <button onclick="showScreen('track-screen')">Track Complaint</button>
+    </section>
+
+    <section id="track-screen" class="screen">
+      <h2>Track Complaint</h2>
+      <label>Enter Complaint ID</label>
+      <input type="text" id="track-id" />
+      <button onclick="trackComplaint()">Track</button>
+
+      <div id="track-result" class="result"></div>
+    </section>
+
+    <section id="tracking-timeline-section" class="screen">
+      <h2>Complaint Progress</h2>
+      <p>
+        Track the current status of your complaint. Updates are provided
+        by the concerned authority.
+      </p>
+
+      <div id="tracking-timeline" class="tracking-timeline">
+
+      </div>
+
+      <div class="tracking-note">
+        <strong>Note:</strong> Status updates are managed by authorities.
+        Citizens cannot modify complaint progress.
+      </div>
+
+      <button onclick="showScreen('track-screen')">Back</button>
+    </section>
+
+  </main>
+
+  <footer class="gov-footer">
+    <p>© Government Complaint Prioritization AI (CPA)</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

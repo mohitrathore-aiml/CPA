@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPA Authority Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="gov-header">
+    <h1>CPA – Authority Dashboard</h1>
+    <p>Complaint Monitoring & Resolution Panel</p>
+  </header>
+
+  <main class="container">
+
+    <section class="summary">
+      <div class="card critical">Critical: <span id="critical-count">0</span></div>
+      <div class="card high">High: <span id="high-count">0</span></div>
+      <div class="card medium">Medium: <span id="medium-count">0</span></div>
+      <div class="card low">Low: <span id="low-count">0</span></div>
+      <div class="card overdue">Overdue: <span id="overdue-count">0</span></div>
+    </section>
+
+    <section class="filters">
+      <label>Priority: 
+        <select id="filter-priority" onchange="renderComplaints()">
+          <option value="">All</option>
+          <option>Critical</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+      </label>
+      <label>Department: 
+        <select id="filter-department" onchange="renderComplaints()">
+          <option value="">All</option>
+          <option>Water Supply</option>
+          <option>Electricity</option>
+          <option>Roads</option>
+        </select>
+      </label>
+      <label>Status:
+        <select id="filter-status" onchange="renderComplaints()">
+          <option value="">All</option>
+          <option>Submitted</option>
+          <option>Resolved</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>All Complaints</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Summary</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Resolution Type</th>
+            <th>Resolved At</th>
+            <th>SLA</th>
+            <th>Action</th>
+            <th>Why Priority?</th>
+          </tr>
+        </thead>
+        <tbody id="complaint-table"></tbody>
+      </table>
+    </section>
+
+    <section id="hotspot-section">
+      <h2>Hotspots & Trends</h2>
+      <div id="hotspot-cards" class="hotspot-cards"></div>
+    </section>
+
+    <section class="performance-metrics">
+      <h2>Department Performance Snapshot</h2>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <strong>Avg. Resolution Time</strong>
+          <p id="avg-resolution-time">—</p>
+        </div>
+        <div class="metric-card">
+          <strong>Complaints Open &gt; SLA</strong>
+          <p id="sla-breach-count">—</p>
+        </div>
+        <div class="metric-card">
+          <strong>Total Complaints (7 days)</strong>
+          <p id="weekly-complaint-count">—</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="system-note">
+      <h3>System Scope</h3>
+      <p>
+        This is a prototype of an AI-assisted internal authority system.
+        It demonstrates intelligent decision-making, prioritization logic,
+        and transparency mechanisms without requiring live government integration.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="gov-footer">
+    <p>© Complaint Prioritization AI (CPA)</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
